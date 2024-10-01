@@ -2,8 +2,6 @@
 
 #pragma once
 
-
-
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
@@ -13,7 +11,6 @@
 #include <vector>
 
 #include "InteractionSimulatorCharacter.generated.h"
-
 
 UCLASS(config=Game)
 class AInteractionSimulatorCharacter : public ACharacter

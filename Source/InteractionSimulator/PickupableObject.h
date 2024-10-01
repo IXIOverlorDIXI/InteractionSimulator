@@ -89,6 +89,3 @@ protected:
     UFUNCTION()
     bool IsVectorEqualWithPrecision(FVector value_1, FVector value_2, bool withPrecision) const;
 };
-
-/*UPROPERTY(VisibleAnywhere, Category = "Components")
-UWidgetComponent *PickupWidget;*/

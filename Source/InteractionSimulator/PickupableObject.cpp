@@ -56,42 +56,6 @@ void APickupableObject::Tick(float DeltaTime)
             ObjectTransformReplication(transform, velocity);
         }
     }
-
-    if (GetLocalRole() != ROLE_Authority)
-    {
-  //      FVector currentPosition = StaticMeshComponent->GetComponentTransform().GetLocation();
-  //      FQuat currentRotation = StaticMeshComponent->GetComponentTransform().GetRotation();
-  //      FVector currentVelocity = StaticMeshComponent->GetPhysicsLinearVelocity();
-
-  //      FVector truePosition = TrueTransform.GetLocation();
-  //      FQuat trueRotation = TrueTransform.GetRotation();
-
-  //      FVector newPosition = InterpolateFVector(currentPosition, truePosition, InterpolationParam);
-  //      FQuat newRotation = InterpolateFQuat(currentRotation, trueRotation, InterpolationParam);
-  //      FVector newVelocity = InterpolateFVector(currentVelocity, TrueVelocity, InterpolationParam);
-
-  //      //StaticMeshComponent->SetWorldLocationAndRotation(newPosition, newRotation);
-  //      StaticMeshComponent->SetWorldRotation(newRotation);
-
-		//newVelocity = VectorSum(
-  //          newVelocity,
-		//	GetInterpolatedVelocity(currentPosition, truePosition, 1));
-
-  //      if(newVelocity.X <= PrecisionParam 
-  //          && newVelocity.Y <= PrecisionParam 
-  //          && newVelocity.Z <= PrecisionParam)
-  //      {
-  //          newVelocity = GetInterpolatedVelocity(currentPosition, truePosition, 1);
-  //      }
-
-		//StaticMeshComponent->SetPhysicsLinearVelocity(newVelocity);
-  //      
-  //      
-
-  //      CurrentTransform = StaticMeshComponent->GetComponentTransform();
-  //      CurrentVelocity = StaticMeshComponent->GetPhysicsLinearVelocity();
-    }
-
 }
 
 void APickupableObject::ObjectTransformReplication_Implementation(

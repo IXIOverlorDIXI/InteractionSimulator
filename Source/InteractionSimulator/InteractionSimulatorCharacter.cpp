@@ -61,12 +61,9 @@ AInteractionSimulatorCharacter::AInteractionSimulatorCharacter()
 	USkeletalMeshComponent* mesh = GetMesh();
 	FirstPersonCamera->SetupAttachment(mesh, "head");
 
-
 	InventoryWidgetInstance = CreateDefaultSubobject<UWidgetComponent>(TEXT("InventoryWidgetComponent"));
 	InventoryWidgetInstance->SetWidgetSpace(EWidgetSpace::Screen);
 	InventoryWidgetInstance->SetupAttachment(RootComponent);
-	//InventoryWidgetInstance->SetWidget(CreateWidget<UUserWidget>(InventoryWidget));
-
 	
 	InventoryUICollision = CreateDefaultSubobject<USphereComponent>(TEXT("InventoryUICollision"));
 	InventoryUICollision->SetupAttachment(RootComponent);
@@ -189,8 +186,6 @@ void AInteractionSimulatorCharacter::CheckForInteraction()
 	{
 		PickupableObject = Cast<APickupableObject>(HitResult.GetActor());
 
-		//UE_LOG(LogTemp, Warning, TEXT("%s"), (PickupableObject ? TEXT("true") : TEXT("false")));
-
 		ShowInteractionMessage(PickupableObject != nullptr);
 	}
 	else
@@ -238,8 +233,6 @@ void AInteractionSimulatorCharacter::AddToInventory_Implementation(APickupableOb
 
 			return;
 		}
-
-		//item->AddToViewport();
 
 		InventoryListView->AddItem(item);
 	}
@@ -432,22 +425,17 @@ void AInteractionSimulatorCharacter::CallOnThrow_Implementation(APickupableObjec
 
 void AInteractionSimulatorCharacter::Move(const FInputActionValue& Value)
 {
-	// input is a Vector2D
 	FVector2D MovementVector = Value.Get<FVector2D>();
 
 	if (Controller != nullptr)
 	{
-		// find out which way is forward
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// get forward vector
 		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	
-		// get right vector 
 		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
-		// add movement 
 		AddMovementInput(ForwardDirection, MovementVector.Y);
 		AddMovementInput(RightDirection, MovementVector.X);
 	}
@@ -455,15 +443,12 @@ void AInteractionSimulatorCharacter::Move(const FInputActionValue& Value)
 
 void AInteractionSimulatorCharacter::Look(const FInputActionValue& Value)
 {
-	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
 
 	if (Controller != nullptr)
 	{
 		bUseControllerRotationYaw = !bThirdPersonCurrentCamera;
 		
-		//bUseControllerRotationPitch = !bThirdPersonCurrentCamera;
-
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
